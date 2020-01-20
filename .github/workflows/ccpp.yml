@@ -1,0 +1,55 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  
+- name: run-cmake
+  uses: lukka/run-cmake@v0.5
+  with:
+    # Select between targeting a CMakeLists.txt, or leveraging a CMakeSettings.json file of Visual Studio.
+    cmakeListsOrSettingsJson: # optional, default is CMakeListsTxtBasic
+    # Path to CMakeLists.txt
+    cmakeListsTxtPath: # default is ${{ github.workspace }}/CMakeLists.txt
+    # Path to CMakeSettings.json
+    cmakeSettingsJsonPath: # default is ${{ github.workspace }}//CMakeSettings.json
+    # Path to toolchain .cmake file.
+    cmakeToolchainPath: # optional, default is 
+    # Indicates whether to use vcpkg's CMake toolchain file if RUNVCPKG_VCPKG_ROOT environment variable is defined. If there is already a toolchain.cmake file passed in, that will be passed in with '-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=/path/to/toolchain.cmake'.
+    useVcpkgToolchainFile: # optional
+    # Specify the triplet used with vcpkg. The task 'Run vcpkg' sets the default one in RUNVCPKG_VCPKG_TRIPLET environment variable. Possible values are any file name with no extension present in the vcpkgroot/trplet directory, e.g. x64-linux, x64-windows, x64-osx and so forth.
+    vcpkgTriplet: # optional, default is ${{ env.RUNVCPKG_VCPKG_TRIPLET }}
+    # Select the build configuration, typically Debug or Release.
+    cmakeBuildType: # optional, default is Debug
+    # Specify the CMake generator to be used.
+    cmakeGenerator: # optional, default is Ninja
+    # Set the build directory, i.e. where CMake generates the build system files. Defaults to `$(Build.ArtifactStagingDirectory)` for CMakeLists.txt, and to `$(Build.ArtifactStagingDirectory)/<configuration-name>` for CMakeSettings.json.
+    buildDirectory: # optional, default is ${{ github.workspace }}/../../_temp
+    # Provides a mean to provide all the CMake arguments. This is required when using CMakeLists.txt in Advanced mode. For CMakeSettings.json, the arguments are already inferred, but you can append your arguments providing them here.
+    cmakeAppendedArgs: # optional, default is 
+    # The regular expression selects which CMakeSettings.json's configuration(s) to build, one or more.
+    configurationRegexFilter: # default is .*
+    # Full path to ninja build tool. If not specified, the one in PATH environment variable will be used. If not available, it will be downloaded from Internet.
+    ninjaPath: # optional, default is 
+    # URL to download ninja build tool from.
+    ninjaDownloadUrl: # optional, default is 
+    # The shell command that woud setup the environment and then invoke the cmake command. An example is 'emcmake' of Emscripten SDK.
+    cmakeWrapperCommand: # optional, default is 
+    # Indicates whether to run 'cmake --build' after CMake project files have been generated successfully.
+    buildWithCMake: # optional, default is true
+    # Additional build arguments such '-j4', '--config Debug', '--clean-first' and so forth. Separate CMake argument to the native make program arguments with '--' .
+    buildWithCMakeArgs: # optional, default is 
+     
+- 
+build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+      
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
