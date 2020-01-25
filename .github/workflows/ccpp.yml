@@ -10,7 +10,7 @@ jobs:
           submodules: true
       - name: install packages
         run: |
-           sudo apt-get update -m && sudo apt-get -y install libiio-dev libiio-utils libglib2.0-dev libgtk2.0-dev libgtkdatabox-dev libmatio-dev libfftw3-dev libxml2 libxml2-dev bison flex libavahi-common-dev libavahi-client-dev libcurl4-openssl-dev libjansson-dev cmake libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev doxygen graphviz
+           sudo apt-get update -m && sudo apt-get -y install libiio-dev libiio-utils libglib2.0-dev libgtk2.0-dev libgtkdatabox-dev libmatio-dev libfftw3-dev libxml2 libxml2-dev bison flex libavahi-common-dev libavahi-client-dev libcurl4-openssl-dev libjansson-dev cmake libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev doxygen graphviz && sudo dpkg -i $(curl -w "%{filename_effective}" -LO $(curl -s https://api.github.com/repos/analogdevicesinc/libad9361-iio/releases | grep browser_download_url | grep '[.]deb' | head -n 1 | cut -d '"' -f 4))
         shell: bash
       - name: Build Linux native executable
         uses: lukka/run-cmake@v0
