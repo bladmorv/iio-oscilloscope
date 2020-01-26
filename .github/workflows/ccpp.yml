@@ -13,7 +13,7 @@ jobs:
            sudo apt-get update -m
            sudo apt-get -y install libaio1 libavahi-client3 libavahi-common-data libavahi-common3 libusb-1.0-0 libxml2 libserialport0
            sudo dpkg -i $(curl -w "%{filename_effective}" -LO $(curl -s https://api.github.com/repos/analogdevicesinc/libiio/releases | grep browser_download_url | grep 'ubuntu-18.04-amd64.deb' | head -n 1 | cut -d '"' -f 4))
-           sudo apt-get -y install iiod libiio-dev libiio-utils python3-libiio libglib2.0-dev libgtk2.0-dev libgtkdatabox-dev libmatio-dev libfftw3-dev libxml2 libxml2-dev bison flex libavahi-common-dev libavahi-client-dev libcurl4-openssl-dev libjansson-dev cmake libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev doxygen graphviz 
+           sudo apt-get -y install libglib2.0-dev libgtk2.0-dev libgtkdatabox-dev libmatio-dev libfftw3-dev libxml2 libxml2-dev bison flex libavahi-common-dev libavahi-client-dev libcurl4-openssl-dev libjansson-dev cmake libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev doxygen graphviz 
            sudo dpkg -i $(curl -w "%{filename_effective}" -LO $(curl -s https://api.github.com/repos/analogdevicesinc/libad9361-iio/releases | grep browser_download_url | grep '[.]deb' | head -n 1 | cut -d '"' -f 4))
         shell: bash
       - name: Build Linux native executable
