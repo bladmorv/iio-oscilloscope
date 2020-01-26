@@ -32,3 +32,5 @@ The IIO 'scope uses:
     http://code.google.com/p/inih/
 
 The IIO 'scope is copyright its authors, and is released under the GPL 2.0
+
+[![Run on Repl.it](https://repl.it/badge/github/bladmorv/iio-oscilloscope)](https://repl.it/github/bladmorv/iio-oscilloscope)
