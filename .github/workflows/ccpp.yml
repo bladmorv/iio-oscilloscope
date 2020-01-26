@@ -21,3 +21,8 @@ jobs:
         with:
           #cmakeListsOrSettingsJson: CMakeSettingsJson
           configurationRegexFilter: 'Linux-Release'
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: '/home/runner/work/iio-oscilloscope/iio-oscilloscope/../../_temp'
