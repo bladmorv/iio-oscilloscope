@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: '/home/runner/work/iio-oscilloscope/iio-oscilloscope/../../_temp'
+          path: '/home/runner/work'
